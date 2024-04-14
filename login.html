@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5ca3bc72ee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="signin-signup">
+            <!---------------------------------Đăng nhập------------------------------->
+            <form action="" class="sign-in-form">
+                <h2 class="title">Đăng nhập</h2>
+                <div class="input-field">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="username" placeholder="Tài khoản" pattern=".{5,}" title="Tài khoản cần ít nhất 5 ký tự" required>
+                </div>
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" placeholder="Mật khẩu" pattern=".{5,}" title="Mật khẩu cần ít nhất 5 ký tự" required>
+                    <i class="fa-solid fa-eye" id="togglePassword"></i>
+                </div>
+                <input type="submit" value="Đăng nhập" class="btn" id="login-btn">
+                <p class="social-text">Hoặc Đăng nhập bằng nền tảng xã hội</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fa-brands fa-google"></i>
+                    </a>
+                </div>
+                <br>
+                <p class="account-text">Bạn không có tài khoản? <a href="#" id="sign-up-btn2">Đăng kí</a></p>
+            </form>
+
+            <!---------------------------------Đăng kí------------------------------->
+
+            <form action="" class="sign-up-form">
+                <h2 class="title">Đăng kí</h2>
+                <div class="input-field">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="username" placeholder="Tài khoản">
+                </div>
+                <div class="input-field">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="text" id="password" placeholder="Email">
+                </div>
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Mật khẩu">
+                </div>
+                <input type="submit" value="Đăng kí" class="btn">
+                <p class="social-text">Hoặc Đăng kí bằng các nền tảng xã hội</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fa-brands fa-google"></i>
+                    </a>
+                </div>
+                <br>
+                <p class="account-text">Bạn đã có tài khoản? <a href="#" id="sign-in-btn2">Sign in</a></p>
+            </form>
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Thành viên cũ?</h3>
+                    <p></p>
+                    <button class="btn" id="sign-in-btn">Đăng nhập</button>
+                </div>
+                <img src="hinhanh/signin.svg" alt="" class="image">
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>Thành viên mới?</h3>
+                    <p></p>
+                    <button class="btn" id="sign-up-btn">Đăng kí</button>
+                </div>
+                <img src="hinhanh/signup.svg" alt="" class="image">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="login.js"></script>
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</body>
+
+</html>
