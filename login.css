@@ -273,3 +273,68 @@ a {
 
 }
 
+
+.input-field {
+    position: relative; /* Đặt vị trí tương đối để dễ dàng định vị các phần tử con */
+}
+
+.remember-me {
+    margin-top: 10px; /* Khoảng cách từ phần "Đăng nhập" xuống phần "Ghi nhớ tài khoản" */
+    display: flex;
+    align-items: center;
+    font-size: 14px; /* Kích thước chữ của "Ghi nhớ tài khoản" */
+}
+
+.remember-me label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
+.checkmark {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px; /* Khoảng cách giữa checkbox nhỏ và văn bản "Ghi nhớ tài khoản" */
+    background-color: #fff; /* Màu nền ban đầu của checkmark */
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #D0D7FB;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+/* Thay đổi màu sắc mặc định của văn bản "Ghi nhớ tài khoản" */
+.remember-text {
+    color: #666; /* Màu xanh */
+    font-weight: bold; /* Chữ in đậm */
+}
+
+.remember-me input[type="checkbox"]:checked + .checkmark::after {
+    display: block;
+}
+
+.remember-me input[type="checkbox"]:checked + .checkmark {
+    background-color: #4361EE; /* Màu xanh khi checkbox được chọn */
+}
+
+

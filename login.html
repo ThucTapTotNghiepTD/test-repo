@@ -11,6 +11,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="login.css">
 </head>
+
 <body>
     <div class="container">
         <div class="signin-signup">
@@ -26,6 +27,13 @@
                     <input type="password" id="password" placeholder="Mật khẩu" pattern=".{5,}" title="Mật khẩu cần ít nhất 5 ký tự" required>
                     <i class="fa-solid fa-eye" id="togglePassword"></i>
                 </div>
+                <div class="remember-me">
+                    <label for="rememberMe" class="checkbox-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkmark"></span>
+                        <span class="remember-text">Ghi nhớ tài khoản</span>
+                    </label>
+                </div>                
                 <input type="submit" value="Đăng nhập" class="btn" id="login-btn">
                 <p class="social-text">Hoặc Đăng nhập bằng nền tảng xã hội</p>
                 <div class="social-media">
@@ -42,6 +50,7 @@
                 <br>
                 <p class="account-text">Bạn không có tài khoản? <a href="#" id="sign-up-btn2">Đăng kí</a></p>
             </form>
+            
 
             <!---------------------------------Đăng kí------------------------------->
 
@@ -95,13 +104,13 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 
 
-<script src="login.js"></script>
-<!-- SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="login.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 
 </html>

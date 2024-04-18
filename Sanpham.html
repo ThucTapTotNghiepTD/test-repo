@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/5ca3bc72ee.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <title>Pham-Tien-Dat-SanPham</title>
+    <title>TNC-SanPham</title>
     <link rel="stylesheet" href="TrangChu.css">
 </head>
 
@@ -203,7 +203,7 @@
                 <p style="font-weight: bold;">Tổng tiền:</p>
                 <p class="sale-price">0đ</p>
             </div>
-            <button class="checkout-button" type="button">Chốt đơn hàng</button>
+            <button id="checkoutButton" class="checkout-button" type="button">THANH TOÁN</button>
         </form>
     </section>
 
@@ -640,7 +640,7 @@
         </div>
     </section>
     <!--------------------------------------Khung chat-------------------------------------->
-    <span id="openChat" class="chat-icon"><i class="fa-brands fa-rocketchat"></i></span>
+    <span id="openChat" class="chat-icon"><img src="hinhanh/mess.jpg" alt="" width="3%"></span>
     <div class="chat-box" id="chatBox">
         <!-- Thanh tiêu đề của khung chat -->
         <div class="chat-header">
@@ -771,6 +771,18 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="TrangChu.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Chọn nút "THANH TOÁN" bằng ID
+        var checkoutButton = document.getElementById("checkoutButton");
+
+        // Thêm sự kiện click vào nút "THANH TOÁN"
+        checkoutButton.addEventListener("click", function() {
+            // Chuyển hướng đến trang thanh toán của bạn
+            window.location.href = "ThanhToan.html";
+        });
+    });
+    </script>
 </body>
 
 </html>

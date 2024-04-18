@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Swal.fire({
                 icon: 'info',
                 title: 'Giỏ hàng của bạn đang trống!',
-                text: 'Hãy đi tìm sản phẩm để mua.',
+                text: 'Hãy đi tìm sản phẩm để Thanh toán.',
                 confirmButtonText: 'OK'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -750,3 +750,5 @@ function moveSlider(direction) {
     slider.style.transform = `translateX(${translateValue}%)`;
 }
 
+
+//-----------------------------------thanh toán--------------------------//

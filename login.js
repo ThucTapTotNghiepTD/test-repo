@@ -82,17 +82,60 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-
-
-
 //--------------con mắt mật khẩu---------------//
 const togglePassword = document.querySelector('#togglePassword');
-const passwordInput = document.querySelector('#password');
+const passwordinput = document.querySelector('#password');
 
 togglePassword.addEventListener('click', () => {
-    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordInput.setAttribute('type', type);
+    const type = passwordinput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordinput.setAttribute('type', type);
     togglePassword.classList.toggle('fa-eye-slash');
 });
 
+
+
+
+
+const loginForm = document.querySelector('.sign-in-form');
+const usernameInput = document.querySelector('#username');
+const passwordInput = document.querySelector('#password');
+const rememberMeCheckbox = document.querySelector('#rememberMe');
+
+// Hàm kiểm tra xem đã lưu thông tin đăng nhập hay chưa
+function checkRememberedLogin() {
+    const savedUsername = localStorage.getItem('admin');
+    const savedPassword = localStorage.getItem('admin');
+
+    if (savedUsername && savedPassword) {
+        // Đã lưu thông tin đăng nhập, tự động điền tài khoản và mật khẩu
+        usernameInput.value = savedUsername;
+        passwordInput.value = savedPassword;
+    }
+}
+
+// Kiểm tra nếu đã lưu thông tin đăng nhập
+checkRememberedLogin();
+
+// Sự kiện submit form đăng nhập
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Ngăn chặn hành động mặc định của form
+
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+
+    // Kiểm tra ô "Ghi nhớ tài khoản" được chọn hay không
+    if (rememberMeCheckbox.checked) {
+        // Lưu thông tin đăng nhập vào Local Storage
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+    } else {
+        // Xóa thông tin đăng nhập khỏi Local Storage (nếu có)
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
+    }
+
+    // Xử lý đăng nhập
+    // Thêm code xử lý đăng nhập ở đây, ví dụ: kiểm tra tài khoản và mật khẩu
+
+    // Sau khi xử lý đăng nhập thành công, bạn có thể chuyển hướng người dùng tới trang chính
+});

@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5ca3bc72ee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <title>TNC-Thông Tin Nhận Hàng</title>
+    <link rel="stylesheet" href="TrangChu.css">
+    <style>
+        /*---------------------------------------thanh toán-----------------------------*/
+.customer-info {
+    background-color: #f2f2f2; /* Đặt màu nền của section */
+    padding: 40px 0; /* Tạo khoảng cách nội dung bên trong section */
+}
+
+.customer-info-container {
+    max-width: 1200px; /* Đặt chiều rộng tối đa của container */
+    margin: 0 auto; /* Căn giữa container trên trang */
+    padding: 20px; /* Tạo khoảng cách bao quanh nội dung trong container */
+    background-color: #ffffff; /* Đặt màu nền của container */
+}
+
+.customer-info-row {
+    display: flex; /* Sử dụng flexbox để căn chỉnh các cột trong hàng */
+    justify-content: space-between; /* Căn các cột theo đường ngang */
+    flex-wrap: wrap; /* Cho phép các cột xuống dòng khi không đủ không gian */
+}
+
+.customer-info-col {
+    width: 48%; /* Đặt chiều rộng của mỗi cột */
+    margin-bottom: 20px; /* Khoảng cách dưới của mỗi cột */
+    background-color: #ffffff; /* Đặt màu nền của cột */
+    padding: 20px; /* Tạo khoảng cách bao quanh nội dung trong cột */
+    border-radius: 8px; /* Bo tròn góc của cột */
+}
+
+.customer-info-col h2 {
+    margin-top: 20px; /* Đặt khoảng cách trên của tiêu đề là 0 */
+    margin-left: 0;
+    padding-bottom: 10px; /* Đặt khoảng cách dưới của tiêu đề */
+}
+
+@media (max-width: 768px) {
+    .customer-info-col {
+        width: 100%; /* Đổi lại chiều rộng của cột khi bố cục dưới 768px */
+    }
+}
+
+.customer-info-row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.customer-info-col {
+    float: left;
+    width: 50%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* Đảm bảo các phần tử có cùng chiều rộng */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px; /* Đặt khoảng cách trên cho phần tử này */
+}
+
+/* Định dạng label */
+.form-group label {
+    margin-bottom: 5px;
+}
+
+/* Định dạng select */
+.form-group select {
+    padding: 8px; /* Điều chỉnh lề nội dung trong select */
+    width: 100%; /* Chiều rộng select bằng 100% */
+    box-sizing: border-box; /* Tính cả padding và border vào chiều rộng */
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.select-wrapper {
+    position: relative;
+    overflow: hidden; /* Ẩn phần vượt quá khung chứa */
+    max-height: 40px; /* Đặt chiều cao tối đa ban đầu */
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: max-height 0.3s ease; /* Hiệu ứng khi mở rộng */
+}
+
+select:focus {
+    outline: none;
+}
+
+select option {
+    padding: 10px;
+}
+
+select.expanded {
+    max-height: 300px; /* Đặt chiều cao tối đa khi được mở rộng */
+}
+
+
+/*-------------------Đơn hàng của bạn----------------*/
+
+.customer-info-col {
+    /* Thiết lập display flex để sử dụng flexbox */
+    display: block;
+    flex-direction: column;
+    align-items: flex-start; /* Căn căn chỉnh theo chiều dọc (theo trục chính là dọc) */
+}
+
+th:first-child, td:first-child {
+    width: 70%; /* Độ rộng của cột đầu tiên (Sản phẩm) */
+}
+
+th:last-child, td:last-child {
+    width: 30%; /* Độ rộng của cột cuối cùng (Tạm tính) */
+    text-align: right; /* Căn văn bản sang phải */
+}
+
+.button-container {
+    text-align: center; /* Căn nội dung nút button về giữa */
+    margin-top: 20px; /* Khoảng cách trên của button */
+}
+
+thead th {
+    border-bottom: 1px solid #ccc; /* Đường kẻ đường viền dưới cho các thẻ <th> trong <thead> */
+}
+
+tbody {
+    color: #666; /* Đặt màu cho văn bản trong tbody thành màu xám nhạt */
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: vertical; /* Cho phép chỉnh kích thước theo chiều dọc */
+}
+
+textarea.default-text {
+    color: #999; /* Màu chữ mờ đi */
+}
+
+textarea:focus.default-text {
+    color: #000; /* Màu chữ khi tập trung vào */
+}
+
+.remember-me {
+    margin-top: 30px; /* Đặt khoảng cách dưới cho phần tử này */
+}
+
+.checkmark {
+
+    margin-right: 10px; /* Khoảng cách giữa checkbox nhỏ và văn bản "Ghi nhớ tài khoản" */
+    background-color: #fff; /* Màu nền ban đầu của checkmark */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Thêm đường viền dưới cho từng hàng */
+}
+
+th {
+    background-color: #f2f2f2; /* Đặt màu nền cho các tiêu đề cột */
+}
+
+/* Định dạng các cột SẢN PHẨM và Tạm tính */
+th[colspan="2"] {
+    text-align: center; /* Căn giữa nội dung các cột có colspan="2" */
+}
+
+.payment-options {
+    margin-bottom: 20px;
+}
+    </style>
+
+
+</head>
+
+<body>
+    <section class="page-top">
+        <div class="container">
+            <div class="row row-grid">
+                <div class="row-flex">
+                    <ul class="row-flex">
+                        <li><i class="fa-solid fa-phone-volume"></i> <a href="Tel.0123456789">0123.456.789</a></li>
+                        <li><i class="fa-solid fa-envelope"></i> <a href="#">Contact: phamtiendat@123.vn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="row row-grid">
+                    <div class="header-top-logo">
+                        <img width="150px" src="https://www.tncstore.vn/static/assets/default/images/logo-new.png"
+                            alt="">
+                    </div>
+                    <div class="header-top-search row-grid">
+                        <input type="text" placeholder="Nhập sản phẩm cần tìm...">
+                        <button class="search"><a href="">Tìm kiếm <i
+                                    class="fa-solid fa-magnifying-glass"></i></a></button>
+                    </div>
+                    <div class="header-top-user_cart">
+                        <ul class="row-flex">
+                            <li><a href=""><i class="fa-solid fa-user"></i>Tài khoản</a></li>
+                            <div class="cart-icon">
+                                <li><i class="fa-solid fa-cart-shopping"></i><span>0</span></li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <div class="row row-grid">
+                    <div class="header-bottom-menubar">
+                        <i class="fa-regular fa-face-laugh-beam"></i>
+                        <span>PC GAMING HÀNG ĐẦU HCM</span>
+                    </div>
+                    <div class="header-bottom-menulist">
+                        <ul class="row-flex">
+                            <li><a href="">Xây Dựng Cấu Hình PC</a></li>
+                            <li><a href="">PC Gaming</a></li>
+                            <li><a href="">Màn Hình Gaming</a></li>
+                            <li><a href="">Laptop Gaming</a></li>
+                            <li><a href="">PC Văn Phòng</a></li>
+                            <li><a href="">Khuyến Mãi</a></li>
+                            <li><a href="">PS5 Slim</a></li>
+                            <li><a href="">Giới Thiệu</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--------------section-cart--------------------------------------------------------------------------------->
+    <section class="cart">
+        <i class="fas fa-times"></i>
+        <h2>Giỏ hàng của bạn</h2>
+        <form action="">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sản Phẩm</th>
+                        <th>Giá</th>
+                        <th>SL</th>
+                        <th>Chọn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--
+                    <tr>
+                        <td style="display: flex; align-items: center;"><img style="width: 70px;"src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg" alt="">Máy tính</td>
+                        <td><p class="sale-price">15.890.000đ</p></td>
+                        <td><input style="width: 30px;outline: none;" type="number" value="1" min="1"></td>
+                        <td style="cursor: pointer;">Xóa</td>
+                    </tr>
+                    <tr>
+                        <td style="display: flex; align-items: center;"><img style="width: 70px;"src="https://www.tncstore.vn/media/product/250-7788-glacier-i3060---wh.jpg" alt="">Máy tính</td>
+                        <td><p class="sale-price">15.890.000đ</p></td>
+                        <td><input style="width: 30px;outline: none;" type="number" value="1" min="1"></td>
+                        <td style="cursor: pointer;">Xóa</td>
+                    </tr>
+                    <tr>
+                        <td style="display: flex; align-items: center;"><img style="width: 70px;"src="https://www.tncstore.vn/media/product/250-8759-sniper-i3060---bl--1-.jpg" alt="">Máy tính</td>
+                    <td><p class="sale-price">15.890.000đ</p></td>
+                        <td><input style="width: 30px;outline: none;" type="number" value="1" min="1"></td>
+                        <td style="cursor: pointer;">Xóa</td>
+                    </tr>
+                    -->
+                </tbody>
+            </table>
+            <div class="price-total">
+                <p style="font-weight: bold;">Tổng tiền:</p>
+                <p class="sale-price">0đ</p>
+            </div>
+            <button class="checkout-button" type="button">Chốt đơn hàng</button>
+        </form>
+    </section>
+
+
+    <!--------------------------Thông tin thanh toán----------------------------------------------------------------------------------->
+    <section class="customer-info">
+        <div class="container">
+            <div class="customer-info-row">
+                <div class="customer-info-col">
+                    <h2>THÔNG TIN THANH TOÁN</h2>
+                    <form id="payment-form">
+                        <div class="form-group">
+                            <label for="firstName">Họ *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Tên *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Quốc gia/Khu vực *</label>
+                            <div class="select-wrapper">
+                                <select id="country" name="country" required>
+                                    <option value="" disabled selected>Chọn quốc gia/khu vực</option>
+                                    <option value="VN">Việt Nam</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="KR">South Korea</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="TW">Taiwan</option>
+                                    <option value="HK">Hong Kong</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="VN">Việt Nam</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="KR">South Korea</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="TW">Taiwan</option>
+                                    <option value="HK">Hong Kong</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="VN">Việt Nam</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="KR">South Korea</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="TW">Taiwan</option>
+                                    <option value="HK">Hong Kong</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="VN">Việt Nam</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="KR">South Korea</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="TW">Taiwan</option>
+                                    <option value="HK">Hong Kong</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="VN">Việt Nam</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="KR">South Korea</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="TW">Taiwan</option>
+                                    <option value="HK">Hong Kong</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="VN">Việt Nam</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="KR">South Korea</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="TW">Taiwan</option>
+                                    <option value="HK">Hong Kong</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="VN">Việt Nam</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="KR">South Korea</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="TW">Taiwan</option>
+                                    <option value="HK">Hong Kong</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="VN">Việt Nam</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="KR">South Korea</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="TW">Taiwan</option>
+                                    <option value="HK">Hong Kong</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Địa chỉ *</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Tỉnh/Thành phố *</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Số điện thoại *</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Địa chỉ email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="remember-me">
+                            <label for="rememberMe" class="checkbox-label">
+                                <input type="checkbox" id="rememberMe">
+                                <span class="checkmark"></span>
+                                <span class="remember-text">Giao hàng tới địa chỉ khác?</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderNote">Ghi chú đơn hàng</label>
+                            <textarea id="orderNote" name="orderNote" rows="4"
+                                class="default-text">Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn.</textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="customer-info-col">
+                    <h2>ĐƠN HÀNG CỦA BẠN</h2>
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>SẢN PHẨM</th>
+                                <th>TẠM TÍNH</th>
+                        <tbody>
+                            <tr>
+                                <td>Tên sản phẩm</td>
+                                <td>Giá sản phẩm</td>
+                            </tr>
+                        </tbody>
+                        </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th>Tạm tính</th>
+                                <th>giá tạm tính</th>
+                        <tbody>
+                            <tr>
+                                <td>Giao hàng</td>
+                                <td>Giao hàng miễn phí</td>
+                            </tr>
+                        </tbody>
+                        </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th>Tổng</th>
+                                <th>Tổng số tiền</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div  class="payment-options" style="margin-top: 20px;">
+                        <input type="radio" id="bankTransfer" name="paymentMethod" value="bankTransfer">
+                        <label for="bankTransfer">Chuyển khoản ngân hàng</label><br>
+                        <div id="bankTransferContent" style="display: none;">
+                            <br>
+                            Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi.
+                            Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán.
+                            Đơn hàng sẽ được giao sau khi tiền đã chuyển.
+                        </div>
+                        <br>
+                        <input type="radio" id="bank" name="paymentMethod" value="bank">
+                        <label for="bank">Kiểm tra thanh toán</label> <br> <br>
+                        <input type="radio" id="cash" name="paymentMethod" value="cash">
+                        <label for="cash">Trả tiền mặt khi nhận hàng</label><br> <br>
+                        <input type="radio" id="momo" name="paymentMethod" value="momo">
+                        <label for="momo">Quét mã MoMo</label>
+                        <img src="hinhanh/momo.jpg" alt="MoMo Logo" style="vertical-align: middle; height: 40px; width: auto; border-radius: 10%;">
+                        <br>
+                        <input type="radio" id="zalopay" name="paymentMethod" value="zalopay">
+                        <label for="zalopay">Quét mã QR ZaloPay</label>
+                        <img src="hinhanh/zalopay.jpg" alt="ZaloPay Logo" style="vertical-align: middle; height: 40px; width: auto; border-radius: 10%;">
+                        <br>
+                    </div>
+                    
+                    <button type="submit" form="payment-form">Xác nhận đặt hàng</button> <br>
+                    <p>Thông tin cá nhân của bạn sẽ được sử dụng để xử lý đơn hàng, tăng trải nghiệm
+                        sử dụng website, và cho các mục đích cụ thể khác đã được mô tả trong chính sách
+                        riêng tư của chúng tôi.
+                    </p>
+                    <h2>Danh sách các ngân hàng thanh toán qua online</h2>
+                    <img src="hinhanh/atm.webp" width="70%" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br>
+    <br>
+
+
+    <!-------------------------------------------------Khuyen Mai-------------------------------------------------->
+    <section class="sli">
+        <div class="container">
+            <div class="slider-content">
+                <div class="hot-product-title row-grid">
+                    <h2>CHUYÊN TRANG KHUYẾN MÃI</h2>
+                </div>
+                <div class="slider-content-right">
+                    <li><a href=""><img src="https://www.tncstore.vn/media/news/2861-banner-asus-rog-impact-iii.jpg"
+                                alt=""></a></li>
+                    <li><a href=""><img
+                                src="https://www.tncstore.vn/media/news/2858-asus-proart-pba-tuyet-tac-sang-tao-tu-cong-nghe-dinh-cao-thumb.jpg"
+                                alt=""></a></li>
+                    <li><a href=""><img src="https://www.tncstore.vn/media/news/2672-raw.jpeg" alt=""></a></li>
+                    <li><a href=""><img
+                                src="https://www.tncstore.vn/media/news/2648-chuong-trinh-khuyen-mai-asus-thang-11.jpg"
+                                alt=""></a></li>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!----------------------------------------------Tin Tức------------------------------------------------------------->
+    <br>
+    <br>
+    <section class="featured-links">
+        <div class="container">
+            <div class="row-link">
+                <div class="column">
+                    <h2>PTĐ CHANNEL</h2>
+                    <div class="video-list">
+                        <div class="video-item">
+                            <h3>Dùng màn Gaming hay TV cho PS5?</h3>
+                            <iframe width="100%" height="300" src="https://www.youtube.com/embed/XAobd8tcs3E"
+                                frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-item">
+                            <h3>Màn 144Hz-100% sRGB chỉ hơn 3 TRIỆU</h3>
+                            <iframe width="100%" height="300" src="https://www.youtube.com/embed/EsSJkMhmCIU"
+                                frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <!--------------------------------------------------Thuong hieu-------------------------------------------------->
+    <section class="thuonghieu">
+        <div class="container">
+            <div class="hot-product-title row-grid">
+                <h2>THƯƠNG HIỆU ĐỒNG HÀNH</h2>
+            </div>
+            <div>
+                <div class="thuonghieu-dat">
+                    <li><a href=""><img src="https://www.tncstore.vn/media/brand/22.png" alt="" width=""></a></li>
+                    <li><a href=""><img src="https://www.tncstore.vn/media/brand/11.png" alt="" width=""></a></li>
+                    <li><a href=""><img src="https://www.tncstore.vn/media/brand/78.jpg" alt="" width=""></a></li>
+                    <li><a href=""><img src="https://www.tncstore.vn/media/brand/13.png" alt="" width=""></a></li>
+                    <li><a href=""><img src="https://www.tncstore.vn/media/brand/28.png" alt="" width=""></a></li>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+
+    <!---------------------------------------------------Email-------------------------------------------------------------->
+    <section class="subscribe">
+        <div class="container">
+            <div class="subscribe-content">
+                <div class="follow-us">
+                    <h3>Theo dõi chúng tôi tại:</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="email-subscribe">
+                    <h3 style="margin-left: 12px;">Đăng ký email để nhận tin khuyến mãi</h3>
+                    <div class="header-top-search row-grid">
+                        <input type="text" placeholder="Nhập email của bạn">
+                        <button class="search"><a href="">Đăng kí</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--------------------------------------Khung chat-------------------------------------->
+    <span id="openChat" class="chat-icon"><img src="hinhanh/mess.jpg" alt="" width="3%"></span>
+    <div class="chat-box" id="chatBox">
+        <!-- Thanh tiêu đề của khung chat -->
+        <div class="chat-header">
+            <div class="chat-header">
+                <div class="logo-container">
+                    <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/351313857_953444202440864_8225252793844434659_n.png?stp=dst-jpg&_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=MNS2qvE0QskAb59l0iJ&_nc_ht=scontent.fsgn2-6.fna&oh=00_AfD7HBzk5RiDGMhvxJmM1wkiRi6Qi8Jx9fCRURWsCDjvXw&oe=661E595F"
+                        alt="Logo" class="chat-logo">
+                    <h3 class="store-name">Tiến Đạt Store</h3>
+                </div>
+                <span id="closeChat" class="close-icon">&times;</span>
+            </div>
+        </div>
+
+        <!-- Nội dung tin nhắn trong khung chat -->
+        <div class="chat-content" id="chatContent">
+            <!-- Các tin nhắn trong khung chat -->
+            <div class="chat-message agent">
+                <p><strong>Nhân viên:</strong> Xin chào! Bạn cần hỗ trợ gì?</p>
+            </div>
+        </div>
+
+        <!-- Khung nhập tin nhắn -->
+        <div class="chat-input">
+            <textarea id="userMessage" placeholder="Nhập tin nhắn của bạn..."></textarea>
+            <button id="sendMessage">Gửi</button>
+        </div>
+    </div>
+    <!-- --------------------------------------------Bảng thông báo------------------------------------------------>
+    <div id="notification">
+        <div class="notification-content">
+            <span class="close" onclick="closeNotification()">&times;</span>
+            <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/351313857_953444202440864_8225252793844434659_n.png?stp=dst-jpg&_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=MNS2qvE0QskAb59l0iJ&_nc_ht=scontent.fsgn2-6.fna&oh=00_AfD7HBzk5RiDGMhvxJmM1wkiRi6Qi8Jx9fCRURWsCDjvXw&oe=661E595F"
+                alt="Logo" class="logo">
+            <div>
+                <h3>Tiến Đạt Store</h3>
+                <p>Chào mừng Quý khách đến với website của chúng tôi!</p>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------footer----------------------------------------->
+    <footer>
+        <div class="container">
+            <div class="row-footer">
+                <div class="boxfooter1">
+                    <h2>Hỗ trợ Khách hàng</h2>
+                    <ul>
+                        <li><a href="">Thẻ ưu đãi</a></li>
+                        <li><a href="">Hướng dẫn mua online</a></li>
+                        <li><a href="">Ưu đãi dành cho Doanh nghiệp</a></li>
+                        <li><a href="">Chính sách trả góp</a></li>
+                        <li><a href="">Dịch vụ sửa chữa</a></li>
+                    </ul>
+                </div>
+                <div class="boxfooter2">
+                    <h2>Chính sách mua hàng</h2>
+                    <ul>
+                        <li><a href="">Điều kiện giao dịch chung</a></li>
+                        <li><a href="">Chính sách bảo hành</a></li>
+                        <li><a href="">Chính sách đổi trả</a></li>
+                        <li><a href="">Chính sách Thanh toán</a></li>
+                        <li><a href="">Giao hàng và Lắp đặt tại nhà</a></li>
+                    </ul>
+                </div>
+                <div class="boxfooter3">
+                    <h2>Thông tin Tiến Đạt</h2>
+                    <ul>
+                        <li><a href="">Giới thiệu Tiến Đạt</a></li>
+                        <li><a href="">Hệ thống cửa hàng</a></li>
+                        <li><a href="">Trung tâm bảo hành</a></li>
+                        <li><a href="">Chính sách bảo mật</a></li>
+                        <li><a href="">Tin công nghệ</a></li>
+                        <li><a href="">Hỏi đáp</a></li>
+
+                    </ul>
+                </div>
+                <div class="boxfooter4">
+                    <h2>Cộng đồng Tiến Đạt</h2>
+                    <ul>
+                        <li><a href="">Gọi mua hàng(miễn phí) 0123456789</a></li>
+                        <li><a href="">Gọi chăm sóc 0987654321</a></li>
+                        <li><a href=""><i class="bi bi-facebook"></i> Facebook</a></li>
+                        <li><a href=""><i class="bi bi-youtube"></i> Youtube</a></li>
+                        <li><a href=""><i class="bi bi-telegram"></i> Telegram</a></li>
+                    </ul>
+                </div>
+                <div class="boxfooter5">
+                    <h2>Email liên hệ</h2>
+                    <ul>
+                        <li><a href="">Hỗ trợ khách hàng: cskh@tiendat.vn</a></li>
+                        <li><a href="">Liên hệ báo giá: baogia@tiendat.vn</a></li>
+                        <li><a href="">Hợp tác phát triển: hoptac@tiendat.vn</a></li>
+                    </ul>
+                </div>
+                <br>
+                <div class="boxfooter6">
+                    <h2>Các phương thức thanh toán</h2>
+                    <ul>
+                        <li><a href="#"><i class="fa-solid fa-qrcode"></i> QR Code</a></li>
+                        <li><a href="#"><i class="fa-solid fa-money-bill"></i> Tiền Mặt</a></li>
+                        <li><a href="#"><i class="fa-solid fa-credit-card"></i></i> Internet Banking</a></li>
+                    </ul>
+                </div>
+
+                <div class="boxfooter7">
+                    <h2>Danh sách các ngân hàng thanh toán qua online</h2>
+                    <img src="hinhanh/atm.webp" width="70%" alt="">
+
+                </div>
+
+                <div class="boxfooter8">
+                    <h2>Tiến Đạt Computer</h2>
+                    <h3>Địa chỉ trụ sở chính:</h3>
+                    <h3>Tầng 5, Số 117-119-121 Nguyễn Du, Phường Bến Thành, Quận 1, Thành Phố Hồ Chí Minh</h3>
+                    <h3>Văn phòng điều hành miền Bắc:</h3>
+                    <h3>Tầng 6, Số 1 Phố Thái Hà, Phường Trung Liệt, Quận Đống Đa, Hà Nội</h3>
+                    <h3>Văn phòng điều hành miền Nam:</h3>
+                    <h3>677/2A Điện Biên Phủ, Phường 25 , Quận Bình Thạnh , TP. Hồ Chí Minh</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62704.557190577136!2d106.61747037087731!3d10.808644730801547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175294a0c97a181%3A0x6aece518177f9a92!2sGEARVN%20Ho%C3%A0ng%20Hoa%20Th%C3%A1m!5e0!3m2!1svi!2s!4v1712882738129!5m2!1svi!2s"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="TrangChu.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+            const textarea = document.getElementById('orderNote');
+
+            paymentMethods.forEach(function (radioButton) {
+                radioButton.addEventListener("click", function () {
+                    const bankTransferContent = document.getElementById("bankTransferContent");
+
+                    if (radioButton.value === "bankTransfer" && radioButton.checked) {
+                        bankTransferContent.style.display = "block";
+                    } else {
+                        bankTransferContent.style.display = "none";
+                    }
+                });
+            });
+            // Xử lý sự kiện focus (tập trung vào)
+            textarea.addEventListener('focus', function () {
+                if (this.value === this.defaultValue) {
+                    this.value = ''; // Xoá nội dung khi tập trung vào nếu nội dung là mặc định
+                    this.classList.remove('default-text'); // Xoá lớp default-text để thay đổi màu chữ
+                }
+            });
+
+            // Xử lý sự kiện blur (mất tập trung)
+            textarea.addEventListener('blur', function () {
+                if (this.value === '') {
+                    this.value = this.defaultValue; // Khôi phục nội dung mặc định nếu rỗng
+                    this.classList.add('default-text'); // Thêm lại lớp default-text để đổi màu chữ
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

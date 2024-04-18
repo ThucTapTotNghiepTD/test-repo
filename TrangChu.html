@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/5ca3bc72ee.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <title>Pham-Tien-Dat</title>
+    <title>TNC</title>
     <link rel="stylesheet" href="TrangChu.css">
 </head>
 
@@ -244,7 +244,7 @@
                 <p style="font-weight: bold;">Tổng tiền:
                 <p class="sale-price">0đ</p>
             </div>
-            <button class="checkout-button" type="button">Chốt đơn hàng</button>
+            <button id="checkoutButton" class="checkout-button" type="button">THANH TOÁN</button>
         </form>
 
     </section>
@@ -701,7 +701,7 @@
     </section>
 
     <!-- Icon để hiển thị khung chat -->
-    <span id="openChat" class="chat-icon"><i class="fa-brands fa-rocketchat"></i></span>
+    <span id="openChat" class="chat-icon"><img src="hinhanh/mess.jpg" alt="" width="3%"></span>
 
     <!-- Khung chat -->
     <div class="chat-box" id="chatBox">
@@ -736,7 +736,7 @@
     <div id="notification">
         <div class="notification-content">
             <span class="close" onclick="closeNotification()">&times;</span>
-            <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/351313857_953444202440864_8225252793844434659_n.png?stp=dst-jpg&_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=MNS2qvE0QskAb59l0iJ&_nc_ht=scontent.fsgn2-6.fna&oh=00_AfD7HBzk5RiDGMhvxJmM1wkiRi6Qi8Jx9fCRURWsCDjvXw&oe=661E595F"
+            <img src="hinhanh/logo.jpeg"
                 alt="Logo" class="logo">
             <div>
                 <h3>Tiến Đạt Store</h3>
@@ -839,6 +839,18 @@
     <!-- Thư viện SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="TrangChu.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Chọn nút "THANH TOÁN" bằng ID
+        var checkoutButton = document.getElementById("checkoutButton");
+
+        // Thêm sự kiện click vào nút "THANH TOÁN"
+        checkoutButton.addEventListener("click", function() {
+            // Chuyển hướng đến trang thanh toán của bạn
+            window.location.href = "ThanhToan.html";
+        });
+    });
+    </script>
 </body>
 
 </html>
