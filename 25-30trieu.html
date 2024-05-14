@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5ca3bc72ee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <title>TNC-SanPham</title>
+    <link rel="stylesheet" href="TrangChu.css">
+    <style>
+        .banner-slider {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            height: auto;
+        }
+
+        .prev-btn,
+        .next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            color: black;
+            font-size: 24px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        .product-list-section {
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+
+        .product-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            /* Căn lề khung theo chiều dọc */
+        }
+
+        .filter-sidebar {
+            flex: 1;
+            /* Sử dụng flex-grow để khung bộ lọc chiếm không gian nhỏ hơn */
+            max-width: 250px;
+            /* Độ rộng tối đa của khung bộ lọc */
+            padding-right: 30px;
+            /* Thay đổi khoảng cách bên phải */
+
+            background-color: #FFFFFF;
+        }
+
+        .price-filter {
+            margin-top: 20px;
+        }
+
+        .price-filter p {
+            font-weight: bold;
+            color: #8D94AC;
+        }
+
+        .price-filter label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .price-filter input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .product-list {
+            flex: 2;
+            /* Khung danh sách sản phẩm chiếm không gian lớn hơn */
+            background-color: #FFFFFF;
+            /* Màu nền mong muốn */
+            padding: 20px;
+            /* Padding để tạo khoảng cách xung quanh nội dung */
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            /* Khoảng cách giữa các sản phẩm */
+        }
+
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .product-content {
+                flex-direction: column;
+                /* Chuyển sang hiển thị dọc khi màn hình nhỏ hơn 768px */
+            }
+
+            .filter-sidebar,
+            .product-list {
+                width: 100%;
+                /* Độ rộng 100% khi hiển thị dọc trên màn hình nhỏ */
+            }
+        }
+
+        .hot-product-main-item {
+            width: calc(20% - 20px);
+            /* Chiều rộng của mỗi sản phẩm (20% để hiển thị 5 sản phẩm trên một hàng) */
+            margin-bottom: 20px;
+            /* Khoảng cách dưới của mỗi sản phẩm */
+        }
+
+        .hot-product-main-item img {
+            width: 100%;
+        }
+
+        .hot-product-main-item-content {
+            text-align: center;
+        }
+
+        .hot-product-main-item-content h1 {
+            font-size: 16px;
+        }
+
+        .hot-product-item-review {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .hot-product-item-review-star {
+            color: gold;
+        }
+
+        .price-item {
+            text-decoration: line-through;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .sale-price {
+            font-weight: bold;
+            color: #ff0000;
+            font-size: 18px;
+        }
+
+        .product-grid>* {
+            margin-right: 0;
+        }
+
+        /* Chọn label và chỉnh sửa màu chữ khi hover */
+        label:hover {
+            color: #1E90FF;
+            /* Màu chữ khi hover */
+            cursor: pointer;
+            /* Biến con trỏ thành bàn tay khi hover vào label */
+        }
+
+        .price-slider {
+            margin-top: 20px;
+        }
+
+        .slider {
+            width: 100%;
+        }
+
+        .range-slider {
+            margin-top: 20px;
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .slider-value {
+            margin-bottom: 8px;
+        }
+
+        .range-slider input[type="range"] {
+            width: 83%;
+            /* Thiết lập chiều rộng của thanh trượt là 100% */
+        }
+
+        .hot-product-main-item-content h1 {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            /* Số dòng tối đa bạn muốn hiển thị */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* Hiển thị dấu ... nếu văn bản vượt quá kích thước */
+            max-height: 3em;
+            /* Chiều cao tối đa cho 2 dòng văn bản */
+            line-height: 1.5em;
+            /* Độ cao của mỗi dòng */
+        }
+    </style>
+</head>
+
+<body>
+    <section class="page-top">
+        <div class="container">
+            <div class="row row-grid">
+                <div class="row-flex">
+                    <ul class="row-flex">
+                        <li><i class="fa-solid fa-phone-volume"></i> <a href="Tel.0123456789">0123.456.789</a></li>
+                        <li><i class="fa-solid fa-envelope"></i> <a href="#">Contact: phamtiendat@123.vn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="row row-grid">
+                    <div class="header-top-logo">
+                        <img width="150px" src="https://www.tncstore.vn/static/assets/default/images/logo-new.png"
+                            alt="">
+                    </div>
+                    <div class="header-top-search row-grid">
+                        <input type="text" placeholder="Nhập sản phẩm cần tìm...">
+                        <button class="search"><a href="">Tìm kiếm <i
+                                    class="fa-solid fa-magnifying-glass"></i></a></button>
+                    </div>
+                    <div class="header-top-user_cart">
+                        <ul class="row-flex">
+                            <li><a href=""><i class="fa-solid fa-user"></i>Tài khoản</a></li>
+                            <div class="cart-icon">
+                                <li><i class="fa-solid fa-cart-shopping"></i><span>0</span></li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <div class="row row-grid">
+                    <div class="header-bottom-menubar">
+                        <i class="fa-regular fa-face-laugh-beam"></i>
+                        <span>PC GAMING HÀNG ĐẦU HCM</span>
+                    </div>
+                    <div class="header-bottom-menulist">
+                        <ul class="row-flex">
+                            <li><a href="pcgaming.html">PC Gaming</a></li>
+                            <li><a href="manhinh.html">Màn Hình Gaming</a></li>
+                            <li><a href="laptop.html">Laptop Gaming</a></li>
+                            <li><a href="pcvanphong.html">PC Văn Phòng</a></li>
+                            <li><a href="khuyenmai.html">Khuyến Mãi</a></li>
+                            <li><a href="vga.html">RTX 4070 Super</a></li>
+                            <li><a href="pchandheld.html">PC Handheld</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!----------------------------------------------product-detail------------------------------------------------------------->
+
+    <section class="product-detail">
+        <div class="container">
+            <div class="row-flex row-flex-product-detail">
+                <h2 id="home-link"><i class="fa-solid fa-house"></i> Trang Chủ</h2><i
+                    class="fa-solid fa-angle-right"></i>
+                <h2>PC GAMING</h2>
+            </div>
+            <div class="banner-slider">
+                <div class="slider-wrapper">
+                    <img src="hinhanh/bannerpc.jpg" alt="Image 1">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-list-section">
+        <div class="container">
+            <div class="product-content">
+                <!-- Khung bộ lọc sản phẩm bên trái -->
+                <div class="filter-sidebar">
+                    <h3>Bộ lọc sản phẩm</h3>
+                    <div class="price-filter">
+                        <p><strong>KHOẢNG GIÁ [VNĐ]</strong></p> <br>
+                        
+                        <label>
+                            <input type="checkbox" name="price" value="duoi-10-trieu" checked onclick="handleCheckboxClick(event)">
+                            25 triệu - 30 triệu
+                        </label>
+                        
+                        <br>
+                        <p><strong>GAMING PC SERIES</strong></p> <br>
+
+                        <label>
+                            <input type="checkbox" name="price" value="duoi-10-trieu">
+                            Gaming PC Sentinel
+                        </label>
+                        <label>
+                            <input type="checkbox" name="price" value="tu-10-den-20-trieu">
+                            Gaming PC Nova
+                        </label>
+                        <label>
+                            <input type="checkbox" name="price" value="tren-20-trieu">
+                            Gaming PC Sniper
+                        </label>
+                        <label>
+                            <input type="checkbox" name="price" value="tren-20-trieu">
+                            Gaming PC Glacier
+                        </label>
+                    </div>
+                </div>
+                <div class="product-list">
+
+                    <div class="product-grid">
+                        <!-- Sản phẩm 1 -->
+                        <div class="hot-product-main-item">
+                            <a href="pc9.html">
+                                <img width="100%"
+                                    src="https://www.tncstore.vn/media/product/250-9095-pc-gaming-sniper-i4060-white-01-13.jpg"
+                                    alt="">
+                                <div class="hot-product-main-item-content">
+                                    <h1>PC Gaming - Sniper I4060 - White 01</h1>
+                                    <div class="hot-product-item-review">
+                                        <div class="hot-product-item-review-star">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <p><span>0</span> đánh giá</p>
+                                    </div>
+                                    <div class="hot-product-item-price">
+                                        <p class="price-item">28.990.000đ</p>
+                                        <p class="sale-price">26.290.000đ</p>
+                                    </div>
+                                </div>
+                                <div class="hot-product-main-item-tag">
+                                    <span>- 10%</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--------------section-cart------------->
+    <section class="cart">
+        <i class="fas fa-times"></i>
+        <h2>Giỏ hàng của bạn</h2>
+        <form action="">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sản Phẩm</th>
+                        <th>Giá</th>
+                        <th>SL</th>
+                        <th>Chọn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--
+                    <tr>
+                        <td style="display: flex; align-items: center;"><img style="width: 70px;"src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg" alt="">Máy tính</td>
+                        <td><p class="sale-price">15.890.000đ</p></td>
+                        <td><input style="width: 30px;outline: none;" type="number" value="1" min="1"></td>
+                        <td style="cursor: pointer;">Xóa</td>
+                    </tr>
+                    <tr>
+                        <td style="display: flex; align-items: center;"><img style="width: 70px;"src="https://www.tncstore.vn/media/product/250-7788-glacier-i3060---wh.jpg" alt="">Máy tính</td>
+                        <td><p class="sale-price">15.890.000đ</p></td>
+                        <td><input style="width: 30px;outline: none;" type="number" value="1" min="1"></td>
+                        <td style="cursor: pointer;">Xóa</td>
+                    </tr>
+                    <tr>
+                        <td style="display: flex; align-items: center;"><img style="width: 70px;"src="https://www.tncstore.vn/media/product/250-8759-sniper-i3060---bl--1-.jpg" alt="">Máy tính</td>
+                    <td><p class="sale-price">15.890.000đ</p></td>
+                        <td><input style="width: 30px;outline: none;" type="number" value="1" min="1"></td>
+                        <td style="cursor: pointer;">Xóa</td>
+                    </tr>
+                    -->
+                </tbody>
+            </table>
+            <div class="price-total">
+                <p style="font-weight: bold;">Tổng tiền:</p>
+                <p class="sale-price">0đ</p>
+            </div>
+            <button id="checkoutButton" class="checkout-button" type="button">THANH TOÁN</button>
+        </form>
+    </section>
+
+
+
+    <!----------------------------------------------Tin Tức------------------------------------------------------------->
+    <br>
+    <br>
+    <section class="featured-links">
+        <div class="container">
+            <div class="row-link">
+                <div class="column">
+                    <h2>PTĐ CHANNEL</h2>
+                    <div class="video-list">
+                        <div class="video-item">
+                            <h3>Dùng màn Gaming hay TV cho PS5?</h3>
+                            <iframe width="100%" height="300" src="https://www.youtube.com/embed/XAobd8tcs3E"
+                                frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-item">
+                            <h3>Màn 144Hz-100% sRGB chỉ hơn 3 TRIỆU</h3>
+                            <iframe width="100%" height="300" src="https://www.youtube.com/embed/EsSJkMhmCIU"
+                                frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <!--------------------------------------------------Thuong hieu-------------------------------------------------->
+    <section class="thuonghieu">
+        <div class="container">
+            <div class="hot-product-title row-grid">
+                <h2>THƯƠNG HIỆU ĐỒNG HÀNH</h2>
+            </div>
+            <div>
+                <div class="thuonghieu-dat">
+                    <li><a href=""><img src="https://www.tncstore.vn/media/brand/22.png" alt="" width=""></a></li>
+                    <li><a href=""><img src="https://www.tncstore.vn/media/brand/11.png" alt="" width=""></a></li>
+                    <li><a href=""><img src="https://www.tncstore.vn/media/brand/78.jpg" alt="" width=""></a></li>
+                    <li><a href=""><img src="https://www.tncstore.vn/media/brand/13.png" alt="" width=""></a></li>
+                    <li><a href=""><img src="https://www.tncstore.vn/media/brand/28.png" alt="" width=""></a></li>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+
+    <!---------------------------------------------------Email-------------------------------------------------------------->
+    <section class="subscribe">
+        <div class="container">
+            <div class="subscribe-content">
+                <div class="follow-us">
+                    <h3>Theo dõi chúng tôi tại:</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="email-subscribe">
+                    <h3 style="margin-left: 12px;">Đăng ký email để nhận tin khuyến mãi</h3>
+                    <div class="header-top-search row-grid">
+                        <input id="emailInput" type="text" placeholder="Nhập email của bạn">
+                        <button class="search" onclick="subscribeEmail()">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--------------------------------------Khung chat-------------------------------------->
+    <span id="openChat" class="chat-icon"><img src="hinhanh/mess.jpg" alt="" width="3%"></span>
+    <div class="chat-box" id="chatBox">
+        <!-- Thanh tiêu đề của khung chat -->
+        <div class="chat-header">
+            <div class="chat-header">
+                <div class="logo-container">
+                    <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/351313857_953444202440864_8225252793844434659_n.png?stp=dst-jpg&_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=MNS2qvE0QskAb59l0iJ&_nc_ht=scontent.fsgn2-6.fna&oh=00_AfD7HBzk5RiDGMhvxJmM1wkiRi6Qi8Jx9fCRURWsCDjvXw&oe=661E595F"
+                        alt="Logo" class="chat-logo">
+                    <h3 class="store-name">Tiến Đạt Store</h3>
+                </div>
+                <span id="closeChat" class="close-icon">&times;</span>
+            </div>
+        </div>
+
+        <!-- Nội dung tin nhắn trong khung chat -->
+        <div class="chat-content" id="chatContent">
+            <!-- Các tin nhắn trong khung chat -->
+            <div class="chat-message agent">
+                <p><strong>Nhân viên:</strong> Xin chào! Bạn cần hỗ trợ gì?</p>
+            </div>
+        </div>
+
+        <!-- Khung nhập tin nhắn -->
+        <div class="chat-input">
+            <textarea id="userMessage" placeholder="Nhập tin nhắn của bạn..."></textarea>
+            <button id="sendMessage">Gửi</button>
+        </div>
+    </div>
+    <!-- --------------------------------------------Bảng thông báo------------------------------------------------>
+    <div id="notification">
+        <div class="notification-content">
+            <span class="close" onclick="closeNotification()">&times;</span>
+            <img src="hinhanh/logo.jpeg" alt="Logo" class="logo">
+            <div>
+                <h3>Tiến Đạt Store</h3>
+                <p>Chào mừng Quý khách đến với website của chúng tôi!</p>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------footer----------------------------------------->
+    <footer>
+        <div class="container">
+            <div class="row-footer">
+                <div class="boxfooter1">
+                    <h2>Hỗ trợ Khách hàng</h2>
+                    <ul>
+                        <li><a href="">Thẻ ưu đãi</a></li>
+                        <li><a href="">Hướng dẫn mua online</a></li>
+                    </ul>
+                </div>
+                <div class="boxfooter2">
+                    <h2>Chính sách mua hàng</h2>
+                    <ul>
+                        <li><a href="">Điều kiện giao dịch chung</a></li>
+                        <li><a href="">Chính sách bảo hành</a></li>
+                    </ul>
+                </div>
+                <div class="boxfooter3">
+                    <h2>Thông tin Tiến Đạt</h2>
+                    <ul>
+                        <li><a href="">Giới thiệu Tiến Đạt</a></li>
+                        <li><a href="">Hệ thống cửa hàng</a></li>
+                    </ul>
+                </div>
+                <div class="boxfooter5">
+                    <h2>Email liên hệ</h2>
+                    <ul>
+                        <li><a href="">Hỗ trợ khách hàng: cskh@tiendat.vn</a></li>
+                        <li><a href="">Liên hệ báo giá: baogia@tiendat.vn</a></li>
+                    </ul>
+                </div>
+                <br>
+                <div class="boxfooter6">
+                    <h2>Các phương thức thanh toán</h2>
+                    <ul>
+                        <li><a href="#"><i class="fa-solid fa-qrcode"></i> QR Code</a></li>
+                        <li><a href="#"><i class="fa-solid fa-money-bill"></i> Tiền Mặt</a></li>
+                        <li><a href="#"><i class="fa-solid fa-credit-card"></i></i> Internet Banking</a></li>
+                    </ul>
+                </div>
+
+                <div class="boxfooter7">
+                    <h2>Danh sách các ngân hàng thanh toán qua online</h2>
+                    <img src="hinhanh/atm.webp" width="70%" alt="">
+
+                </div>
+
+                <div class="boxfooter8">
+                    <h2>Tiến Đạt Computer</h2>
+                    <h3>Địa chỉ trụ sở chính:</h3>
+                    <h3>Tầng 5, Số 117-119-121 Nguyễn Du, Phường Bến Thành, Quận 1, Thành Phố Hồ Chí Minh</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62704.557190577136!2d106.61747037087731!3d10.808644730801547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175294a0c97a181%3A0x6aece518177f9a92!2sGEARVN%20Ho%C3%A0ng%20Hoa%20Th%C3%A1m!5e0!3m2!1svi!2s!4v1712882738129!5m2!1svi!2s"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="TrangChu.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Chọn nút "THANH TOÁN" bằng ID
+            var checkoutButton = document.getElementById("checkoutButton");
+
+            // Thêm sự kiện click vào nút "THANH TOÁN"
+            checkoutButton.addEventListener("click", function () {
+                // Chuyển hướng đến trang thanh toán của bạn
+                window.location.href = "ThanhToan.html";
+            });
+        });
+
+
+        const priceRange = document.getElementById("priceRange");
+        const sliderValue = document.querySelector(".slider-value");
+        const rangeValues = document.querySelector(".range-values");
+
+
+        // Đặt giá trị mặc định cho thanh trượt là giá trị max (80000000)
+        const maxValue = priceRange.max;
+        priceRange.value = maxValue;
+        // Cập nhật giá trị hiển thị của slider khi người dùng thay đổi
+        priceRange.addEventListener("input", function () {
+            const minValue = parseInt(priceRange.min);
+            const maxValue = parseInt(priceRange.max);
+            const value = parseInt(priceRange.value);
+
+            // Hiển thị giá trị khoảng giá người dùng chọn
+            const formattedMinValue = formatCurrency(minValue);
+            const formattedValue = formatCurrency(value);
+            sliderValue.textContent = `${formattedMinValue} - ${formattedValue}`;
+
+            // Cập nhật vị trí các giá trị đầu và cuối trên thanh kéo
+            rangeValues.children[0].textContent = formattedMinValue;
+            rangeValues.children[1].textContent = formatCurrency(maxValue);
+        });
+
+        // Hàm định dạng số tiền sang định dạng tiền tệ (VD: 8.000.000đ)
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(amount);
+        }
+
+
+    </script>
+    <script>
+        function handleCheckboxClick(event) {
+            // Lấy trạng thái checked hiện tại của checkbox
+            const isChecked = event.target.checked;
+    
+            // Nếu checkbox đang được check (đã được chọn) và người dùng bỏ dấu tick
+            if (isChecked === false) {
+                // Chuyển hướng đến trang web mới (ví dụ: duoi8trieu.html)
+                window.location.href = 'pcgaming.html';
+            }
+        }
+    </script>
+</body>
+
+</html>

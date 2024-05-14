@@ -63,10 +63,12 @@
             /* Sử dụng flex-grow để khung bộ lọc chiếm không gian nhỏ hơn */
             max-width: 250px;
             /* Độ rộng tối đa của khung bộ lọc */
-            padding-right: 30px; /* Thay đổi khoảng cách bên phải */
-            
+            padding-right: 30px;
+            /* Thay đổi khoảng cách bên phải */
+
             background-color: #FFFFFF;
         }
+
         .price-filter {
             margin-top: 20px;
         }
@@ -88,8 +90,10 @@
         .product-list {
             flex: 2;
             /* Khung danh sách sản phẩm chiếm không gian lớn hơn */
-            background-color: #FFFFFF; /* Màu nền mong muốn */
-            padding: 20px; /* Padding để tạo khoảng cách xung quanh nội dung */
+            background-color: #FFFFFF;
+            /* Màu nền mong muốn */
+            padding: 20px;
+            /* Padding để tạo khoảng cách xung quanh nội dung */
         }
 
         .product-grid {
@@ -199,6 +203,20 @@
             width: 83%;
             /* Thiết lập chiều rộng của thanh trượt là 100% */
         }
+
+        .hot-product-main-item-content h1 {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            /* Số dòng tối đa bạn muốn hiển thị */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* Hiển thị dấu ... nếu văn bản vượt quá kích thước */
+            max-height: 3em;
+            /* Chiều cao tối đa cho 2 dòng văn bản */
+            line-height: 1.5em;
+            /* Độ cao của mỗi dòng */
+        }
     </style>
 </head>
 
@@ -250,14 +268,13 @@
                     </div>
                     <div class="header-bottom-menulist">
                         <ul class="row-flex">
-                            <li><a href="">Xây Dựng Cấu Hình PC</a></li>
-                            <li><a href="">PC Gaming</a></li>
-                            <li><a href="">Màn Hình Gaming</a></li>
-                            <li><a href="">Laptop Gaming</a></li>
-                            <li><a href="">PC Văn Phòng</a></li>
-                            <li><a href="">Khuyến Mãi</a></li>
-                            <li><a href="">PS5 Slim</a></li>
-                            <li><a href="">Giới Thiệu</a></li>
+                            <li><a href="pcgaming.html">PC Gaming</a></li>
+                            <li><a href="manhinh.html">Màn Hình Gaming</a></li>
+                            <li><a href="laptop.html">Laptop Gaming</a></li>
+                            <li><a href="pcvanphong.html">PC Văn Phòng</a></li>
+                            <li><a href="khuyenmai.html">Khuyến Mãi</a></li>
+                            <li><a href="vga.html">RTX 4070 Super</a></li>
+                            <li><a href="pchandheld.html">PC Handheld</a></li>
                         </ul>
                     </div>
                 </div>
@@ -277,10 +294,7 @@
             <div class="banner-slider">
                 <div class="slider-wrapper">
                     <img src="hinhanh/bannerpc.jpg" alt="Image 1">
-                    <img src="hinhanh/bannerpc2.jpg" alt="Image 2">
                 </div>
-                <button class="prev-btn" onclick="prevSlide()">&#10094;</button>
-                <button class="next-btn" onclick="nextSlide()">&#10095;</button>
             </div>
         </div>
     </section>
@@ -293,52 +307,50 @@
                     <h3>Bộ lọc sản phẩm</h3>
                     <div class="price-filter">
                         <p><strong>KHOẢNG GIÁ [VNĐ]</strong></p> <br>
-                       
-                        <label>
-                            <input type="checkbox" name="price" value="duoi-10-trieu">
-                            Dưới 8 triệu
-                        </label>
-                        <label>
-                            <input type="checkbox" name="price" value="tu-10-den-20-trieu">
+                        <!-- Checkbox 8 - 11 triệu -->
+                        <label for="price-tu-10-den-20-trieu" onclick="handleCheckboxClick('tu-10-den-20-trieu')">
+                            <input type="checkbox" id="price-tu-10-den-20-trieu" name="price"
+                                value="tu-10-den-20-trieu">
                             8 triệu - 11 triệu
                         </label>
-                        <label>
-                            <input type="checkbox" name="price" value="tren-20-trieu">
+                        <label for="tren-20-trieu" onclick="handleCheckboxClick('tren-20-trieu')">
+                            <input type="checkbox" id="tren-20-trieu" name="price" value="tren-20-trieu">
                             11 triệu - 15 triệu
                         </label>
-                        <label>
-                            <input type="checkbox" name="price" value="tren-20-trieu">
+                        <label for="tren-25-trieu" onclick="handleCheckboxClick('tren-25-trieu')">
+                            <input type="checkbox" id="tren-25-trieu" name="price" value="tren-25-trieu">
                             15 triệu - 20 triệu
                         </label>
-                        <label>
-                            <input type="checkbox" name="price" value="tren-20-trieu">
+                        <label for="tren-30-trieu" onclick="handleCheckboxClick('tren-30-trieu')">
+                            <input type="checkbox" id="tren-30-trieu" name="price" value="tren-30-trieu">
                             20 triệu - 25 triệu
                         </label>
-                        <label>
-                            <input type="checkbox" name="price" value="tren-20-trieu">
+                        <label for="tren-35-trieu" onclick="handleCheckboxClick('tren-35-trieu')">
+                            <input type="checkbox" id="tren-35-trieu" name="price" value="tren-35-trieu">
                             25 triệu - 30 triệu
                         </label>
-                        <label>
-                            <input type="checkbox" name="price" value="tren-20-trieu">
+                        <label for="tren-40-trieu" onclick="handleCheckboxClick('tren-40-trieu')">
+                            <input type="checkbox" id="tren-40-trieu" name="price" value="tren-40-trieu">
                             30 triệu - 50 triệu
                         </label>
-                        <label>
-                            <input type="checkbox" name="price" value="tren-20-trieu">
+                        <label for="tren-45-trieu" onclick="handleCheckboxClick('tren-45-trieu')">
+                            <input type="checkbox" id="tren-45-trieu" name="price" value="tren-45-trieu">
                             50 triệu - 70 triệu
                         </label>
-                        <label>
-                            <input type="checkbox" name="price" value="tren-20-trieu">
+                        <label for="tren-50-trieu" onclick="handleCheckboxClick('tren-50-trieu')">
+                            <input type="checkbox" id="tren-50-trieu" name="price" value="tren-50-trieu">
                             70 triệu - 80 triệu
                         </label>
                         <div class="range-slider">
                             <div class="slider-value">8.000.000đ - 80.000.000đ</div>
                             <input type="range" min="8000000" max="80000000" value="8000000" step="1000000"
-                                id="priceRange"><hr color="#CCCCCC"> 
+                                id="priceRange">
+                            <hr color="#CCCCCC">
                         </div>
                         <br>
 
                         <p><strong>GAMING PC SERIES</strong></p> <br>
-                         
+
                         <label>
                             <input type="checkbox" name="price" value="duoi-10-trieu">
                             Gaming PC Sentinel
@@ -360,16 +372,16 @@
 
                 <!-- Khung danh sách sản phẩm bên phải -->
                 <div class="product-list">
-                    
+
                     <div class="product-grid">
                         <!-- Sản phẩm 1 -->
                         <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
+                            <a href="pc1.html">
                                 <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
+                                    src="https://www.tncstore.vn/media/product/250-9204-sentinal-i4090-eva-02-limited-edition-01.jpg"
                                     alt="">
                                 <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
+                                    <h1>PC Gaming - Sentinal I4090 Eva 02 Limited Edition 01</h1>
                                     <div class="hot-product-item-review">
                                         <div class="hot-product-item-review-star">
                                             <i class="fa-regular fa-star"></i>
@@ -381,23 +393,50 @@
                                         <p><span>0</span> đánh giá</p>
                                     </div>
                                     <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
+                                        <p class="price-item">135.990.000đ</p>
+                                        <p class="sale-price">129.990.000đ</p>
                                     </div>
                                 </div>
                                 <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
+                                    <span>- 5%</span>
                                 </div>
                             </a>
                         </div>
                         <!-- Sản phẩm 2 -->
                         <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
+                            <a href="pc2.html">
                                 <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
+                                    src="https://www.tncstore.vn/media/product/250-8687-tnc-store-pc-gaming-glacier-i3050-01bl-69.jpg"
                                     alt="">
                                 <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
+                                    <h1>PC Gaming - Glacier I3050 - 01BL</h1>
+                                    <div class="hot-product-item-review">
+                                        <div class="hot-product-item-review-star">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <p><span>0</span> đánh giá</p>
+                                    </div>
+                                    <div class="hot-product-item-price">
+                                        <p class="price-item">13.990.000đ</p>
+                                        <p class="sale-price">13.190.000đ</p>
+                                    </div>
+                                </div>
+                                <div class="hot-product-main-item-tag">
+                                    <span>- 6%</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hot-product-main-item">
+                            <a href="pc3.html">
+                                <img width="100%"
+                                    src="https://www.tncstore.vn/media/product/250-9514-250-9514-glacier-i2070---bl-01.jpg"
+                                    alt="">
+                                <div class="hot-product-main-item-content">
+                                    <h1>PC Gaming - Sniper I2070 - BL</h1>
                                     <div class="hot-product-item-review">
                                         <div class="hot-product-item-review-star">
                                             <i class="fa-regular fa-star"></i>
@@ -410,11 +449,118 @@
                                     </div>
                                     <div class="hot-product-item-price">
                                         <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
+                                        <p class="sale-price">16.890.000đ</p>
+                                    </div>
+                                </div>
+                                <div class="hot-product-main-item-tag">
+                                    <span>- 10%</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hot-product-main-item">
+                            <a href="pc4.html">
+                                <img width="100%" src="https://www.tncstore.vn/media/product/250-7796-sentinel.jpg"
+                                    alt="">
+                                <div class="hot-product-main-item-content">
+                                    <h1>PC Gaming - Sentinel I4080 - BL</h1>
+                                    <div class="hot-product-item-review">
+                                        <div class="hot-product-item-review-star">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <p><span>0</span> đánh giá</p>
+                                    </div>
+                                    <div class="hot-product-item-price">
+                                        <p class="price-item">118.820.000đ</p>
+                                        <p class="sale-price">74.790.000đ</p>
+                                    </div>
+                                </div>
+                                <div class="hot-product-main-item-tag">
+                                    <span>- 38%</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hot-product-main-item">
+                            <a href="pc5.html">
+                                <img width="100%"
+                                    src="https://www.tncstore.vn/media/product/250-7790-pc-gaming-sniper-i3060-wh-03.jpg"
+                                    alt="">
+                                <div class="hot-product-main-item-content">
+                                    <h1>PC Gaming - Sniper I3060 - WH - 03</h1>
+                                    <div class="hot-product-item-review">
+                                        <div class="hot-product-item-review-star">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <p><span>0</span> đánh giá</p>
+                                    </div>
+                                    <div class="hot-product-item-price">
+                                        <p class="price-item">25.471.000đ</p>
+                                        <p class="sale-price">17.490.000đ</p>
                                     </div>
                                 </div>
                                 <div class="hot-product-main-item-tag">
                                     <span>- 12%</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hot-product-main-item">
+                            <a href="pc6.html">
+                                <img width="100%"
+                                    src="https://www.tncstore.vn/media/product/250-8557-pc-gaming-nova-a4070-wh.jpg"
+                                    alt="">
+                                <div class="hot-product-main-item-content">
+                                    <h1>PC Gaming - Nova A4070 - WH</h1>
+                                    <div class="hot-product-item-review">
+                                        <div class="hot-product-item-review-star">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <p><span>0</span> đánh giá</p>
+                                    </div>
+                                    <div class="hot-product-item-price">
+                                        <p class="price-item">43.739.000đ</p>
+                                        <p class="sale-price">42.290.000đ</p>
+                                    </div>
+                                </div>
+                                <div class="hot-product-main-item-tag">
+                                    <span>- 4%</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hot-product-main-item">
+                            <a href="pc7.html">
+                                <img width="100%"
+                                    src="https://www.tncstore.vn/media/product/250-8760-pc-gaming-sniper-i4060ti-bl-199.jpg"
+                                    alt="">
+                                <div class="hot-product-main-item-content">
+                                    <h1>PC Gaming - Sniper I4060Ti - BL</h1>
+                                    <div class="hot-product-item-review">
+                                        <div class="hot-product-item-review-star">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <p><span>0</span> đánh giá</p>
+                                    </div>
+                                    <div class="hot-product-item-price">
+                                        <p class="price-item">33.890.000đ</p>
+                                        <p class="sale-price">32.490.000đ</p>
+                                    </div>
+                                </div>
+                                <div class="hot-product-main-item-tag">
+                                    <span>- 10%</span>
                                 </div>
                             </a>
                         </div>
@@ -446,12 +592,12 @@
                             </a>
                         </div>
                         <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
+                            <a href="pc9.html">
                                 <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
+                                    src="https://www.tncstore.vn/media/product/250-9095-pc-gaming-sniper-i4060-white-01-13.jpg"
                                     alt="">
                                 <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
+                                    <h1>PC Gaming - Sniper I4060 - White 01</h1>
                                     <div class="hot-product-item-review">
                                         <div class="hot-product-item-review-star">
                                             <i class="fa-regular fa-star"></i>
@@ -463,22 +609,21 @@
                                         <p><span>0</span> đánh giá</p>
                                     </div>
                                     <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
+                                        <p class="price-item">28.990.000đ</p>
+                                        <p class="sale-price">26.290.000đ</p>
                                     </div>
                                 </div>
                                 <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
+                                    <span>- 10%</span>
                                 </div>
                             </a>
                         </div>
                         <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
+                            <a href="pc10.html">
                                 <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
+                                    src="https://www.tncstore.vn/media/product/250-9009-sniper-i4060ti---wh.jpg" alt="">
                                 <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
+                                    <h1>PC Gaming - Sniper I4060Ti - WH</h1>
                                     <div class="hot-product-item-review">
                                         <div class="hot-product-item-review-star">
                                             <i class="fa-regular fa-star"></i>
@@ -490,687 +635,12 @@
                                         <p><span>0</span> đánh giá</p>
                                     </div>
                                     <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
+                                        <p class="price-item">32.990.000đ</p>
+                                        <p class="sale-price">31.390.000đ</p>
                                     </div>
                                 </div>
                                 <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="hot-product-main-item">
-                            <a href="Sanpham.html">
-                                <img width="100%"
-                                    src="https://www.tncstore.vn/media/product/250-10114-pc-gaming-sniper-i3060-bl-01.jpg"
-                                    alt="">
-                                <div class="hot-product-main-item-content">
-                                    <h1>PC Gaming - Sniper I3060 - BL 01</h1>
-                                    <div class="hot-product-item-review">
-                                        <div class="hot-product-item-review-star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p><span>0</span> đánh giá</p>
-                                    </div>
-                                    <div class="hot-product-item-price">
-                                        <p class="price-item">17.890.000đ</p>
-                                        <p class="sale-price">15.890.000đ</p>
-                                    </div>
-                                </div>
-                                <div class="hot-product-main-item-tag">
-                                    <span>- 12%</span>
+                                    <span>- 5%</span>
                                 </div>
                             </a>
                         </div>
@@ -1344,9 +814,6 @@
                     <ul>
                         <li><a href="">Thẻ ưu đãi</a></li>
                         <li><a href="">Hướng dẫn mua online</a></li>
-                        <li><a href="">Ưu đãi dành cho Doanh nghiệp</a></li>
-                        <li><a href="">Chính sách trả góp</a></li>
-                        <li><a href="">Dịch vụ sửa chữa</a></li>
                     </ul>
                 </div>
                 <div class="boxfooter2">
@@ -1354,9 +821,6 @@
                     <ul>
                         <li><a href="">Điều kiện giao dịch chung</a></li>
                         <li><a href="">Chính sách bảo hành</a></li>
-                        <li><a href="">Chính sách đổi trả</a></li>
-                        <li><a href="">Chính sách Thanh toán</a></li>
-                        <li><a href="">Giao hàng và Lắp đặt tại nhà</a></li>
                     </ul>
                 </div>
                 <div class="boxfooter3">
@@ -1364,21 +828,6 @@
                     <ul>
                         <li><a href="">Giới thiệu Tiến Đạt</a></li>
                         <li><a href="">Hệ thống cửa hàng</a></li>
-                        <li><a href="">Trung tâm bảo hành</a></li>
-                        <li><a href="">Chính sách bảo mật</a></li>
-                        <li><a href="">Tin công nghệ</a></li>
-                        <li><a href="">Hỏi đáp</a></li>
-
-                    </ul>
-                </div>
-                <div class="boxfooter4">
-                    <h2>Cộng đồng Tiến Đạt</h2>
-                    <ul>
-                        <li><a href="">Gọi mua hàng(miễn phí) 0123456789</a></li>
-                        <li><a href="">Gọi chăm sóc 0987654321</a></li>
-                        <li><a href=""><i class="bi bi-facebook"></i> Facebook</a></li>
-                        <li><a href=""><i class="bi bi-youtube"></i> Youtube</a></li>
-                        <li><a href=""><i class="bi bi-telegram"></i> Telegram</a></li>
                     </ul>
                 </div>
                 <div class="boxfooter5">
@@ -1386,7 +835,6 @@
                     <ul>
                         <li><a href="">Hỗ trợ khách hàng: cskh@tiendat.vn</a></li>
                         <li><a href="">Liên hệ báo giá: baogia@tiendat.vn</a></li>
-                        <li><a href="">Hợp tác phát triển: hoptac@tiendat.vn</a></li>
                     </ul>
                 </div>
                 <br>
@@ -1409,10 +857,6 @@
                     <h2>Tiến Đạt Computer</h2>
                     <h3>Địa chỉ trụ sở chính:</h3>
                     <h3>Tầng 5, Số 117-119-121 Nguyễn Du, Phường Bến Thành, Quận 1, Thành Phố Hồ Chí Minh</h3>
-                    <h3>Văn phòng điều hành miền Bắc:</h3>
-                    <h3>Tầng 6, Số 1 Phố Thái Hà, Phường Trung Liệt, Quận Đống Đa, Hà Nội</h3>
-                    <h3>Văn phòng điều hành miền Nam:</h3>
-                    <h3>677/2A Điện Biên Phủ, Phường 25 , Quận Bình Thạnh , TP. Hồ Chí Minh</h3>
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62704.557190577136!2d106.61747037087731!3d10.808644730801547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175294a0c97a181%3A0x6aece518177f9a92!2sGEARVN%20Ho%C3%A0ng%20Hoa%20Th%C3%A1m!5e0!3m2!1svi!2s!4v1712882738129!5m2!1svi!2s"
                         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
@@ -1467,6 +911,66 @@
         function formatCurrency(amount) {
             return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(amount);
         }
+    </script>
+    <script>
+        // Đoạn script sau sẽ xử lý sự kiện click trên nhãn <label> để thay đổi trạng thái của checkbox
+        document.querySelectorAll('.price-filter label').forEach(function (label) {
+            label.addEventListener('click', function (e) {
+                // Lấy đối tượng input (checkbox) trong nhãn label
+                var checkbox = this.querySelector('input[type="checkbox"]');
+
+                // Nếu checkbox tồn tại và chưa được chọn
+                if (checkbox && !checkbox.checked) {
+                    // Ngăn chặn hành vi mặc định của sự kiện click (chuyển hướng trang)
+                    e.preventDefault();
+
+                    // Thay đổi trạng thái của checkbox
+                    checkbox.checked = true;
+                }
+            });
+        });
+    </script>
+    <script>
+        // Đối tượng lưu trữ trạng thái đã click của các checkbox
+        const checkboxClicked = {};
+
+        function handleCheckboxClick(value) {
+            // Kiểm tra xem đã có trạng thái click của checkbox này chưa
+            if (!checkboxClicked[value]) {
+                // Đánh dấu rằng đã click lần đầu tiên cho checkbox này
+                checkboxClicked[value] = true;
+
+                switch (value) {
+                    case 'tu-10-den-20-trieu':
+                        window.location.href = '8-11trieu.html';
+                        break;
+                    case 'tren-20-trieu':
+                        window.location.href = '11-15trieu.html';
+                        break;
+                    case 'tren-25-trieu':
+                        window.location.href = '15-20trieu.html';
+                        break;
+                    case 'tren-30-trieu':
+                        window.location.href = '20-25trieu.html';
+                        break;
+                    case 'tren-35-trieu':
+                        window.location.href = '25-30trieu.html';
+                        break;
+                    case 'tren-40-trieu':
+                        window.location.href = '30-50trieu.html';
+                        break;
+                    case 'tren-45-trieu':
+                        window.location.href = '50-70trieu.html';
+                        break;
+                    case 'tren-50-trieu':
+                        window.location.href = '70-80trieu.html';
+                        break;
+
+                    // Thêm các trường hợp xử lý khác nếu cần
+                }
+            }
+        }
+
 
 
     </script>
